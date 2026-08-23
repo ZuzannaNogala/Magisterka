@@ -1,3 +1,0 @@
-library(gam)
-
-s()
