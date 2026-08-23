@@ -97,20 +97,11 @@ df_plot$predicted_wage_GAM <- predict(model_gam, newdata = df_plot)
 
 # 1. podstawowy wariant GLM
 ggplot(df_plot) +
-  # Linia GLM
-  #geom_line(aes(x = age_group, y = predicted_wage_GLM, group = 1, color = "Model GLM (z zarobkami podniesionymi do kwadratu)"), linewidth = 2) +
   geom_line(aes(x = age_group, y = predicted_wage_GLM, group = 1, color = "Model GLM"), linewidth = 2) +
-  # Linia GAM
-  #geom_line(aes(x = age_group, y = predicted_wage_GAM, group = 1, color = "Model GAM"), linewidth = 2) +
-  
-  # Punkty (średnie empiryczne)
   geom_point(aes(x = age_group, y = mean_wage, color = "Średnie empiryczne"), size = 4) +
-  
-  # Ręczne przypisanie kolorów do nazw w legendzie
   scale_color_manual(
-    name = "Legenda", # Tytuł legendy
+    name = "Legenda", 
     values = c(
-      #"Model GLM (z zarobkami podniesionymi do kwadratu)" = "steelblue",
       "Model GLM" = "steelblue",
       "Model GAM" = "red", 
       "Średnie empiryczne" = "darkblue"
@@ -141,21 +132,12 @@ ggplot(df_plot) +
 
 # 2. wariant GLM z składnikiem kwadratowym
 ggplot(df_plot) +
-  # Linia GLM
   geom_line(aes(x = age_group, y = predicted_wage_GLM_2, group = 1, color = "Model GLM (z zarobkami podniesionymi do kwadratu)"), linewidth = 2) +
-  #geom_line(aes(x = age_group, y = predicted_wage_GLM, group = 1, color = "Model GLM"), linewidth = 2) +
-  # Linia GAM
-  #geom_line(aes(x = age_group, y = predicted_wage_GAM, group = 1, color = "Model GAM"), linewidth = 2) +
-  
-  # Punkty (średnie empiryczne)
   geom_point(aes(x = age_group, y = mean_wage, color = "Średnie empiryczne"), size = 4) +
-  
-  # Ręczne przypisanie kolorów do nazw w legendzie
   scale_color_manual(
-    name = "Legenda", # Tytuł legendy
+    name = "Legenda", 
     values = c(
       "Model GLM (z zarobkami podniesionymi do kwadratu)" = "steelblue",
-      #"Model GLM" = "steelblue",
       "Model GAM" = "red", 
       "Średnie empiryczne" = "darkblue"
     )
@@ -185,20 +167,12 @@ ggplot(df_plot) +
 
 # 3. GLM vs GAM
 ggplot(df_plot) +
-  # Linia GLM
-  #geom_line(aes(x = age_group, y = predicted_wage_GLM_2, group = 1, color = "Model GLM (z zarobkami podniesionymi do kwadratu)"), linewidth = 2) +
   geom_line(aes(x = age_group, y = predicted_wage_GLM, group = 1, color = "Model GLM"), linewidth = 2) +
-  # Linia GAM
   geom_line(aes(x = age_group, y = predicted_wage_GAM, group = 1, color = "Model GAM"), linewidth = 2) +
-  
-  # Punkty (średnie empiryczne)
   geom_point(aes(x = age_group, y = mean_wage, color = "Średnie empiryczne"), size = 4) +
-  
-  # Ręczne przypisanie kolorów do nazw w legendzie
   scale_color_manual(
-    name = "Legenda", # Tytuł legendy
+    name = "Legenda", 
     values = c(
-      #"Model GLM (z zarobkami podniesionymi do kwadratu)" = "steelblue",
       "Model GLM" = "steelblue",
       "Model GAM" = "red", 
       "Średnie empiryczne" = "darkblue"
@@ -230,21 +204,13 @@ ggplot(df_plot) +
 
 # 4. GLM ze składnikiem kwadratowym vs GAM
 ggplot(df_plot) +
-  # Linia GLM
   geom_line(aes(x = age_group, y = predicted_wage_GLM_2, group = 1, color = "Model GLM (z zarobkami podniesionymi do kwadratu)"), linewidth = 2) +
-  # geom_line(aes(x = age_group, y = predicted_wage_GLM, group = 1, color = "Model GLM"), linewidth = 2) +
-  # Linia GAM
   geom_line(aes(x = age_group, y = predicted_wage_GAM, group = 1, color = "Model GAM"), linewidth = 2) +
-  
-  # Punkty (średnie empiryczne)
   geom_point(aes(x = age_group, y = mean_wage, color = "Średnie empiryczne"), size = 4) +
-  
-  # Ręczne przypisanie kolorów do nazw w legendzie
   scale_color_manual(
-    name = "Legenda", # Tytuł legendy
+    name = "Legenda",
     values = c(
       "Model GLM (z zarobkami podniesionymi do kwadratu)" = "steelblue",
-      #"Model GLM" = "steelblue",
       "Model GAM" = "red", 
       "Średnie empiryczne" = "darkblue"
     )
@@ -270,41 +236,3 @@ ggplot(df_plot) +
     x = "Wiek pracownika",
     y = "Średnie wynagrodzenie (tys. USD)"
   )
-
-
-glm_model <- plot(df_plot$age_group, df_plot$mean_wage)
-
-
-
-
-
-df_plot_5 <- Wage %>%
-  mutate(age_group = cut(
-    age,
-    # Punkty cięcia (breaks). 
-    # Wartości oznaczają "do 20", "od 21 do 25", "od 26 do 30", itd.
-    breaks = c(0, 20, 25, 30, 35, 40, 45, 50, 55, 59, Inf),
-    
-    # Nazwy, które wyświetlą się na osi X
-    labels = c("20-", "21-25", "26-30", "31-35", "36-40", 
-               "41-45", "46-50", "51-55", "56-59", "60+")
-  )) %>%
-  group_by(age_group) %>%
-  summarise(mean_wage = mean(wage))
-
-ggplot(df_plot_5) +
-  geom_line(aes(x = age_group, y = mean_wage, group = 1), color = "steelblue", linewidth = 1) +
-  geom_point(aes(x = age_group, y = mean_wage), color = "darkblue", size = 2) +
-  theme_minimal() +
-  labs(
-    title = "Średnia płaca w 5-letnich grupach wiekowych",
-    x = "Grupa wiekowa",
-    y = "Średnia płaca"
-  )
-
-
-library(MASS)
-
-data(Boston)
-
-

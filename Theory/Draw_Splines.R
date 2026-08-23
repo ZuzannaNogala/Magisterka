@@ -3,7 +3,7 @@ library(splines)
 
 set.seed(42)
 
-# Część teoretyczna: Obrazowanie funckji wygładzającej
+# Część teoretyczna: Obrazowanie funkcji wygładzającej
 
 base_dim <- 12
 names_in_legends <- c("Dane", "Funkcje bazowe", "Funkcja wygładzająca")
