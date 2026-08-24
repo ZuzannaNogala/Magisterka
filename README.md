@@ -22,11 +22,7 @@ W ramach pracy zostały przeprowadzone symulacje Monte Carlo (z wykorzystaniem p
 * **Funkcja wykładnicza:** $f_2(x) = 10 e^{-(x^2 - 20)/100 - 3x}$
 * **Funkcja trygonometryczna:** $f_3(x) = 5\sin(-0.5\pi x) + \cos(\pi x)$
 * **Funkcja „schodkowa”:** 
-$$f_4(x) = \begin{cases} 
-  x^2 & \text{dla } x \le 2,5 \\ 
-  4 & \text{dla } x \in (2,5; 4) \\ 
-  2 & \text{dla } x \ge 4 
-\end{cases}$$
+$$f_4(x) = \begin{cases} x^2 & \text{dla } x \le 2,5 \\\\ 4 & \text{dla } x \in (2,5; 4) \\\\ 2 & \text{dla } x \ge 4 \end{cases}$$
 * **Funkcja wielomianowa (3. stopnia):** $f_5(x) = 0,9x^3 - 8x^2 - 4,8x + 6$
 
 Funkcje zostały przedstawione na poniższym wykresie.
@@ -69,11 +65,7 @@ As part of the thesis, Monte Carlo simulations were conducted (using the `mgcv` 
 * **Exponential function:** $f_2(x) = 10 e^{-(x^2 - 20)/100 - 3x}$
 * **Trigonometric function:** $f_3(x) = 5\sin(-0.5\pi x) + \cos(\pi x)$
 * **"Step" function:** 
-$$f_4(x) = \begin{cases} 
-  x^2 & \text{for } x \le 2.5 \\ 
-  4 & \text{for } x \in (2.5; 4) \\ 
-  2 & \text{for } x \ge 4 
-\end{cases}$$
+$$f_4(x) = \begin{cases} x^2 & \text{for } x \le 2.5 \\\\ 4 & \text{for } x \in (2.5; 4) \\\\ 2 & \text{for } x \ge 4 \end{cases}$$
 * **Polynomial function (3rd degree):** $f_5(x) = 0.9x^3 - 8x^2 - 4.8x + 6$
 
 The functions are presented in the plot below.
